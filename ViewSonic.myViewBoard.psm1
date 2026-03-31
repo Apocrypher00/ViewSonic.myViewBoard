@@ -1,0 +1,10 @@
+# Import all enums in the Enums folder
+$Enums = Join-Path -Path $PSScriptRoot -ChildPath 'Enums'
+Get-ChildItem -Path $Enums -Filter '*.ps1' -File | ForEach-Object { . $_.FullName }
+
+# Import all functions in the Private and Public folders
+$Functions        = Join-Path -Path $PSScriptRoot -ChildPath 'Functions'
+$PrivateFunctions = Join-Path -Path $Functions -ChildPath 'Private'
+$PublicFunctions  = Join-Path -Path $Functions -ChildPath 'Public'
+Get-ChildItem -Path $PrivateFunctions -Filter '*.ps1' -File | ForEach-Object { . $_.FullName }
+Get-ChildItem -Path $PublicFunctions  -Filter '*.ps1' -File | ForEach-Object { . $_.FullName }

@@ -1,0 +1,4 @@
+enum DevicesSubType {
+    usage
+    statistics
+}

@@ -8,3 +8,8 @@ $PrivateFunctions = Join-Path -Path $Functions -ChildPath 'Private'
 $PublicFunctions  = Join-Path -Path $Functions -ChildPath 'Public'
 Get-ChildItem -Path $PrivateFunctions -Filter '*.ps1' -File | ForEach-Object { . $_.FullName }
 Get-ChildItem -Path $PublicFunctions  -Filter '*.ps1' -File | ForEach-Object { . $_.FullName }
+
+<#
+    Notes:
+    You can find the API Documentation at: https://oapi-doc.myviewboard.com/#myviewboard-open-api-doc
+#>

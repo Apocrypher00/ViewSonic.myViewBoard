@@ -21,15 +21,17 @@ function Get-Resource {
         [MVBResourceType] $ResourceType,
 
         [Parameter()]
+        [ValidateRange(1, [int]::MaxValue)]
         [int] $Count,
 
         [Parameter()]
+        [ValidateRange(1, [int]::MaxValue)]
         [int] $Page
     )
 
     $Parameters = @{}
-    if ($Count) { $Parameters["count"] = $Count }
-    if ($Page) { $Parameters["page"] = $Page }
+    if ($PSBoundParameters.ContainsKey("Count")) { $Parameters["count"] = $Count }
+    if ($PSBoundParameters.ContainsKey("Page")) { $Parameters["page"] = $Page }
 
     # Send the query and get the results
     $Results = Invoke-Method `

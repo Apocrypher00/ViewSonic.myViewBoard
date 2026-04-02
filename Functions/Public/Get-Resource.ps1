@@ -1,10 +1,19 @@
 <#
     .SYNOPSIS
-    Query the myViewBoard API via REST GET
+    Query the myViewBoard API via REST GET.
 
     .PARAMETER ResourceType
-    The type of resource to query.
-    Valid values are: playlists, media, groups, devices
+    The top-level resource to query.
+    Valid values are: playlists, media, groups, devices.
+
+    .PARAMETER GroupsSubType
+    Optional second-level endpoint under groups.
+
+    .PARAMETER DevicesSubType
+    Optional second-level endpoint under devices.
+
+    .PARAMETER QueryParameters
+    Optional endpoint-specific query parameters.
 
     .PARAMETER Count
     Optional. The number of results to return per page.
@@ -21,6 +30,15 @@ function Get-Resource {
         [MVBResourceType] $ResourceType,
 
         [Parameter()]
+        [MVBGroupsSubType] $GroupsSubType,
+
+        [Parameter()]
+        [MVBDevicesSubType] $DevicesSubType,
+
+        [Parameter()]
+        [hashtable] $QueryParameters,
+
+        [Parameter()]
         [ValidateRange(1, [int]::MaxValue)]
         [int] $Count,
 
@@ -29,16 +47,37 @@ function Get-Resource {
         [int] $Page
     )
 
+    if ($PSBoundParameters.ContainsKey("GroupsSubType") -and $ResourceType -ne [MVBResourceType]::groups) {
+        throw "GroupsSubType can only be used when ResourceType is 'groups'."
+    }
+
+    if ($PSBoundParameters.ContainsKey("DevicesSubType") -and $ResourceType -ne [MVBResourceType]::devices) {
+        throw "DevicesSubType can only be used when ResourceType is 'devices'."
+    }
+
+    $Endpoint = [string]$ResourceType
+    if ($PSBoundParameters.ContainsKey("GroupsSubType")) {
+        $Endpoint = "$Endpoint/$GroupsSubType"
+    }
+    elseif ($PSBoundParameters.ContainsKey("DevicesSubType")) {
+        $Endpoint = "$Endpoint/$DevicesSubType"
+    }
+
     $Parameters = @{}
     if ($PSBoundParameters.ContainsKey("Count")) { $Parameters["count"] = $Count }
     if ($PSBoundParameters.ContainsKey("Page")) { $Parameters["page"] = $Page }
+    if ($PSBoundParameters.ContainsKey("QueryParameters")) {
+        foreach ($Key in $QueryParameters.Keys) {
+            $Parameters[$Key] = $QueryParameters[$Key]
+        }
+    }
 
-    # Send the query and get the results
+    # Send the query and get the results.
     $Results = Invoke-Method `
-        -Endpoint             $ResourceType `
+        -Endpoint             $Endpoint `
         -Method               ([Microsoft.PowerShell.Commands.WebRequestMethod]::Get) `
         -AdditionalParameters $Parameters
 
-    # Return just the rows of the results, not the metadata
+    # Return just the rows of the results, not the metadata.
     return $Results.rows
 }

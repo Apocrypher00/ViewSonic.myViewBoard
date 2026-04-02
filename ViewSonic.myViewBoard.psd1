@@ -75,6 +75,7 @@
     FunctionsToExport    = @(
         "Get-Device"
         "Get-Group"
+        "Get-GroupDevice"
         "Get-Media"
         "Get-Playlist"
         "Get-Resource"

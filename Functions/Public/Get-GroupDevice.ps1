@@ -6,7 +6,7 @@
     The group_id to filter devices by.
 
     .PARAMETER Group
-    A group object (for example from Get-Group). Its id property is used as group_id.
+    A Group object to filter devices by.
 
     .PARAMETER Count
     Optional. The number of results to return per page.

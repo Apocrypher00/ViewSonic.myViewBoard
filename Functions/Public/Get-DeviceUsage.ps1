@@ -39,7 +39,7 @@ function Get-DeviceUsage {
         [PSTypeName("ViewSonic.myViewBoard.GroupDeviceInfo")]
         [object[]] $GroupDevice,
 
-        [Parameter(ParameterSetName = "DeviceId", ValueFromPipeline)]
+        [Parameter(ParameterSetName = "DeviceId")]
         [string[]] $DeviceId,
 
         [Parameter(ParameterSetName = "Group", ValueFromPipeline)]

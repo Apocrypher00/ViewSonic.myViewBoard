@@ -78,6 +78,10 @@ function Get-Resource {
         -Method               ([Microsoft.PowerShell.Commands.WebRequestMethod]::Get) `
         -AdditionalParameters $Parameters
 
-    # Return just the rows of the results, not the metadata.
-    return $Results.rows
+    $TypeNameParameters = @{ ResourceType = $ResourceType }
+    if ($PSBoundParameters.ContainsKey("GroupsSubType")) { $TypeNameParameters["GroupsSubType"] = $GroupsSubType }
+    if ($PSBoundParameters.ContainsKey("DevicesSubType")) { $TypeNameParameters["DevicesSubType"] = $DevicesSubType }
+
+    # Return rows with schema-based type names for downstream formatting and filtering.
+    return $Results.rows | Add-TypeName @TypeNameParameters
 }

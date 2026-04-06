@@ -6,7 +6,7 @@
     The group_id to filter by.
 
     .PARAMETER Group
-    The Group object(s) to filter devices by.
+    The Group object(s) to filter by.
 
     .PARAMETER DeviceId
     The device_id to filter by.
@@ -24,9 +24,6 @@
     .PARAMETER Page
     Optional. The page number to return.
     Default is 1.
-
-    .NOTES
-    The resulting objects aren't equivalent to those returned by Get-Device.
 #>
 function Get-DeviceStatistics {
     [CmdletBinding(DefaultParameterSetName = "GroupId")]

@@ -7,7 +7,7 @@
                 <Name>TotalUptime</Name>
                 <GetScriptBlock>
                     $Hours, $null, $Minutes, $null = $this.total_uptime.Split(" ")
-                    $([TimeSpan]::new(0, $Hours, $Minutes, 0))
+                    $([TimeSpan]::new($Hours, $Minutes, 0))
                 </GetScriptBlock>
             </ScriptProperty>
         </Members>

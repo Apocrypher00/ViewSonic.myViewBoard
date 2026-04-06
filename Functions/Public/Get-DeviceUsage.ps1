@@ -17,6 +17,14 @@
     .PARAMETER GroupDevice
     The GroupDevice object(s) to filter by.
 
+    .PARAMETER StartTime
+    Optional. The start time of the time period.
+    Accepts values convertible to DateTimeOffset and is sent to the API as Unix time in milliseconds.
+
+    .PARAMETER EndTime
+    Optional. The end time of the time period.
+    Accepts values convertible to DateTimeOffset and is sent to the API as Unix time in milliseconds.
+
     .PARAMETER Count
     Optional. The number of results to return per page.
     Default is 100.
@@ -24,9 +32,6 @@
     .PARAMETER Page
     Optional. The page number to return.
     Default is 1.
-
-    .NOTES
-    The resulting objects aren't equivalent to those returned by Get-Device.
 #>
 function Get-DeviceUsage {
     [CmdletBinding(DefaultParameterSetName = "GroupId")]
@@ -48,6 +53,12 @@ function Get-DeviceUsage {
 
         [Parameter(ParameterSetName = "GroupId")]
         [string[]] $GroupId,
+
+        [Parameter()]
+        [datetimeoffset] $StartTime,
+
+        [Parameter()]
+        [datetimeoffset] $EndTime,
 
         [Parameter()]
         [ValidateRange(1, [int]::MaxValue)]
@@ -95,13 +106,35 @@ function Get-DeviceUsage {
             }
         }
 
+        if (
+            $PSBoundParameters.ContainsKey("StartTime") -and
+            $PSBoundParameters.ContainsKey("EndTime") -and
+            $StartTime -gt $EndTime
+        ) {
+            throw "StartTime cannot be greater than EndTime."
+        }
+
+        $QueryParameters = @{}
+
+        if ($ResolvedId.Count -gt 0 -and -not [string]::IsNullOrWhiteSpace($QueryKey)) {
+            $QueryParameters[$QueryKey] = ($ResolvedId -join ",")
+        }
+
+        if ($PSBoundParameters.ContainsKey("StartTime")) {
+            $QueryParameters["start_time"] = $StartTime.ToUnixTimeMilliseconds()
+        }
+
+        if ($PSBoundParameters.ContainsKey("EndTime")) {
+            $QueryParameters["end_time"] = $EndTime.ToUnixTimeMilliseconds()
+        }
+
         $Parameters = @{
             ResourceType   = [MVBResourceType]::devices
             DevicesSubType = [MVBDevicesSubType]::usage
         }
 
-        if ($ResolvedId.Count -gt 0 -and -not [string]::IsNullOrWhiteSpace($QueryKey)) {
-            $Parameters["QueryParameters"] = @{ $QueryKey = ($ResolvedId -join ",") }
+        if ($QueryParameters.Count -gt 0) {
+            $Parameters["QueryParameters"] = $QueryParameters
         }
 
         if ($PSBoundParameters.ContainsKey("Count")) { $Parameters["Count"] = $Count }

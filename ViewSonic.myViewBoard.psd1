@@ -12,7 +12,7 @@
     RootModule           = "ViewSonic.myViewBoard.psm1"
 
     # Version number of this module.
-    ModuleVersion        = "1.1.0"
+    ModuleVersion        = "1.1.1"
 
     # Supported PSEditions
     CompatiblePSEditions = @("Desktop", "Core")
@@ -139,23 +139,11 @@
 
             # ReleaseNotes of this module
             ReleaseNotes             = @'
-Initial stable release of the ViewSonic.myViewBoard PowerShell module.
+Fixes import issues introduced in 1.1.0.
 
-Included commands:
-- Set-MVBConfig
-- Get-MVBDevice
-- Get-MVBDeviceStatistics
-- Get-MVBDeviceUsage
-- Get-MVBGroup
-- Get-MVBGroupDevice
-- Get-MVBMedia
-- Get-MVBPlaylist
-- Get-MVBResource
-- Invoke-MVBMethod
-
-Notes:
-- Commands import with the MVB prefix by default
-- Supports Windows PowerShell 5.1 and PowerShell 7+
+Changes:
+- Fixed Invoke-Method parameter validation so the module imports correctly
+- Fixed format and type ps1xml compatibility for Windows PowerShell 5.1
 '@
 
             # Prerelease string of this module

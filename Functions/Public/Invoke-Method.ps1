@@ -9,10 +9,7 @@ function Invoke-Method {
         [string] $Endpoint,
 
         [Parameter(Mandatory)]
-        [ValidateSet(
-            [Microsoft.PowerShell.Commands.WebRequestMethod]::Get,
-            [Microsoft.PowerShell.Commands.WebRequestMethod]::Post
-        )]
+        [ValidateSet("Get", "Post")]
         [Microsoft.PowerShell.Commands.WebRequestMethod] $Method,
 
         [Parameter()]

@@ -126,19 +126,19 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @("ViewSonic", "myViewBoard", "REST", "API")
+            Tags                     = @("ViewSonic", "myViewBoard", "REST", "API")
 
             # A URL to the license for this module.
-            LicenseUri = "https://raw.githubusercontent.com/Apocrypher00/ViewSonic.myViewBoard/refs/heads/master/LICENSE"
+            LicenseUri               = "https://github.com/Apocrypher00/ViewSonic.myViewBoard/blob/master/LICENSE"
 
             # A URL to the main website for this project.
-            ProjectUri = "https://github.com/Apocrypher00/ViewSonic.myViewBoard"
+            ProjectUri               = "https://github.com/Apocrypher00/ViewSonic.myViewBoard"
 
             # A URL to an icon representing this module.
-            # IconUri = ""
+            # IconUri                  = "https://myviewboard.com/mydashboard/dm/favicon.svg"
 
             # ReleaseNotes of this module
-            ReleaseNotes = @'
+            ReleaseNotes             = @'
 Initial stable release of the ViewSonic.myViewBoard PowerShell module.
 
 Included commands:

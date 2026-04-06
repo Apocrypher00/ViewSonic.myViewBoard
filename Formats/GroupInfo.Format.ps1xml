@@ -2,15 +2,12 @@
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Format.xsd">
     <ViewDefinitions>
         <View>
-            <Name>ViewSonic.myViewBoard.DeviceProfile</Name>
+            <Name>ViewSonic.myViewBoard.GroupInfo</Name>
             <ViewSelectedBy>
-                <TypeName>ViewSonic.myViewBoard.DeviceProfile</TypeName>
+                <TypeName>ViewSonic.myViewBoard.GroupInfo</TypeName>
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>
-                    <TableColumnHeader />
-                    <TableColumnHeader />
-                    <TableColumnHeader />
                     <TableColumnHeader />
                     <TableColumnHeader />
                     <TableColumnHeader />
@@ -22,19 +19,10 @@
                                 <PropertyName>id</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>asset_tag</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
                                 <PropertyName>name</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>model</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
-                                <PropertyName>serial_number</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
-                                <PropertyName>status</PropertyName>
+                                <PropertyName>number_of_devices</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>

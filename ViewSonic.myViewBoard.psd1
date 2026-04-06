@@ -77,6 +77,8 @@
         "Formats\DeviceProfile.Format.ps1xml"
         "Formats\DeviceStatistics.Format.ps1xml"
         "Formats\DeviceUsage.Format.ps1xml"
+        "Formats\GroupDevice.Format.ps1xml"
+        "Formats\GroupInfo.Format.ps1xml"
     )
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess

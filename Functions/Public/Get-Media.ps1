@@ -9,9 +9,6 @@
     .PARAMETER Page
     Optional. The page number to return.
     Default is 1.
-
-    .NOTES
-    WARNING: This is untested.
 #>
 function Get-Media {
     [CmdletBinding()]

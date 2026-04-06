@@ -12,7 +12,7 @@
     RootModule           = "ViewSonic.myViewBoard.psm1"
 
     # Version number of this module.
-    ModuleVersion        = "0.0.1"
+    ModuleVersion        = "1.0.0"
 
     # Supported PSEditions
     CompatiblePSEditions = @("Desktop", "Core")
@@ -27,7 +27,7 @@
     CompanyName          = "Community"
 
     # Copyright statement for this module
-    Copyright            = "(c) Apocrypher00. All rights reserved."
+    Copyright            = "This is free and unencumbered software released into the public domain."
 
     # Description of the functionality provided by this module
     Description          = "PowerShell module for ViewSonic myViewboard REST API"
@@ -138,7 +138,25 @@
             # IconUri = ""
 
             # ReleaseNotes of this module
-            # ReleaseNotes = ""
+            ReleaseNotes = @'
+Initial stable release of the ViewSonic.myViewBoard PowerShell module.
+
+Included commands:
+- Set-MVBConfig
+- Get-MVBDevice
+- Get-MVBDeviceStatistics
+- Get-MVBDeviceUsage
+- Get-MVBGroup
+- Get-MVBGroupDevice
+- Get-MVBMedia
+- Get-MVBPlaylist
+- Get-MVBResource
+- Invoke-MVBMethod
+
+Notes:
+- Commands import with the MVB prefix by default
+- Supports Windows PowerShell 5.1 and PowerShell 7+
+'@
 
             # Prerelease string of this module
             # Prerelease = ""

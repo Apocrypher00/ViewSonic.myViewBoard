@@ -75,6 +75,7 @@
     # Format files (.ps1xml) to be loaded when importing this module
     FormatsToProcess     = @(
         "Formats\DeviceProfile.Format.ps1xml"
+        "Formats\DeviceStatistics.Format.ps1xml"
     )
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess

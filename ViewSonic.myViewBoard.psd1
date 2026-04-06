@@ -62,10 +62,20 @@
     # ScriptsToProcess = @()
 
     # Type files (.ps1xml) to be loaded when importing this module
-    # TypesToProcess = @()
+    TypesToProcess       = @(
+        "Types\DeviceProfile.Types.ps1xml"
+        "Types\DeviceStatistics.Types.ps1xml"
+        "Types\DeviceUsage.Types.ps1xml"
+        "Types\GroupDeviceInfo.Types.ps1xml"
+        "Types\GroupInfo.Types.ps1xml"
+        "Types\Media.Types.ps1xml"
+        "Types\Playlist.Types.ps1xml"
+    )
 
     # Format files (.ps1xml) to be loaded when importing this module
-    # FormatsToProcess = @()
+    FormatsToProcess     = @(
+        "Formats\DeviceProfile.Format.ps1xml"
+    )
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
     # NestedModules = @()
@@ -74,6 +84,7 @@
     # do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport    = @(
         "Get-Device"
+        "Get-DeviceStatistics"
         "Get-DeviceUsage"
         "Get-Group"
         "Get-GroupDevice"
@@ -82,7 +93,6 @@
         "Get-Resource"
         "Invoke-Method"
         "Set-Config"
-        "Start-Broadcast"
     )
 
     # Cmdlets to export from this module, for best performance,

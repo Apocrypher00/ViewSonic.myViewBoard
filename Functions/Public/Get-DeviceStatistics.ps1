@@ -1,6 +1,6 @@
 <#
     .SYNOPSIS
-    Retrieve a list of device usage data from MVB.
+    Retrieve a list of device statistics data from MVB.
 
     .PARAMETER GroupId
     The group_id to filter by.
@@ -28,7 +28,7 @@
     .NOTES
     The resulting objects aren't equivalent to those returned by Get-Device.
 #>
-function Get-DeviceUsage {
+function Get-DeviceStatistics {
     [CmdletBinding(DefaultParameterSetName = "GroupId")]
     param (
         [Parameter(ParameterSetName = "Device", ValueFromPipeline)]
@@ -97,7 +97,7 @@ function Get-DeviceUsage {
 
         $Parameters = @{
             ResourceType   = [MVBResourceType]::devices
-            DevicesSubType = [MVBDevicesSubType]::usage
+            DevicesSubType = [MVBDevicesSubType]::statistics
         }
 
         if ($ResolvedId.Count -gt 0 -and -not [string]::IsNullOrWhiteSpace($QueryKey)) {

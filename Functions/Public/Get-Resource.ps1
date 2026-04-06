@@ -82,6 +82,9 @@ function Get-Resource {
     if ($PSBoundParameters.ContainsKey("GroupsSubType")) { $TypeNameParameters["GroupsSubType"] = $GroupsSubType }
     if ($PSBoundParameters.ContainsKey("DevicesSubType")) { $TypeNameParameters["DevicesSubType"] = $DevicesSubType }
 
-    # Return rows with schema-based type names for downstream formatting and filtering.
-    return $Results.rows | Add-TypeName @TypeNameParameters
+    # Add schema-based type names for downstream formatting and filtering
+    $Results.rows | Add-TypeName @TypeNameParameters
+
+    # Return just the array of results, not the full response object with metadata
+    return $Results.rows
 }
